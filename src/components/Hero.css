@@ -1,0 +1,138 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, var(--charcoal) 0%, var(--black) 65%);
+  padding: 8rem 1.5rem 6rem;
+}
+
+.hero__ember-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(169, 22, 32, 0.35), transparent 55%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 3;
+  max-width: 46rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+.hero__title-accent {
+  color: var(--ember);
+  text-shadow: 0 0 30px rgba(255, 77, 61, 0.45);
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--smoke);
+  max-width: 34rem;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.8rem;
+  border-radius: 3rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--ember), var(--red) 70%);
+  color: var(--cream);
+  box-shadow: 0 10px 30px -8px rgba(169, 22, 32, 0.7);
+  margin-top: 0.6rem;
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -6px rgba(255, 77, 61, 0.6);
+}
+
+.btn__arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn--primary:hover .btn__arrow {
+  transform: translateX(3px);
+}
+
+.hero__wing {
+  position: absolute;
+  width: clamp(9rem, 16vw, 15rem);
+  height: clamp(9rem, 16vw, 15rem);
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.hero__wing--left {
+  top: 18%;
+  left: 4%;
+}
+
+.hero__wing--right {
+  bottom: 12%;
+  right: 5%;
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 2.2rem;
+  background: linear-gradient(180deg, var(--ember), transparent);
+}
+
+@media (max-width: 720px) {
+  .hero__wing {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+  .hero__wing--left {
+    top: 10%;
+    left: 2%;
+  }
+  .hero__wing--right {
+    bottom: 6%;
+    right: 2%;
+  }
+}

@@ -1,0 +1,110 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar--scrolled {
+  background: rgba(10, 10, 11, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.navbar__logo-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, var(--ember), var(--red) 60%, var(--red-deep) 100%);
+  color: var(--cream);
+  font-size: 1.2rem;
+  box-shadow: 0 0 18px rgba(169, 22, 32, 0.55);
+}
+
+.navbar__logo-text {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  font-size: 1.15rem;
+  color: var(--cream);
+}
+
+.navbar__logo-text span {
+  color: var(--ember);
+}
+
+.navbar__links--desktop {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  color: var(--fog);
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.navbar__link:hover {
+  color: var(--ember);
+}
+
+.navbar__burger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 1.5rem;
+}
+
+.navbar__links--mobile {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .navbar__links--desktop {
+    display: none;
+  }
+  .navbar__burger {
+    display: flex;
+  }
+  .navbar__links--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.25rem;
+    overflow: hidden;
+  }
+  .navbar__links--mobile .navbar__link {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}

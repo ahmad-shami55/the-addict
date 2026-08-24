@@ -1,0 +1,48 @@
+.scroll-burger {
+  position: relative;
+  height: 260vh;
+  background: linear-gradient(180deg, var(--black) 0%, var(--charcoal) 45%, var(--black) 100%);
+}
+
+.scroll-burger__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 2rem;
+}
+
+.scroll-burger__caption {
+  position: absolute;
+  top: 22%;
+}
+
+.scroll-burger__image {
+  width: min(70vw, 26rem);
+  height: min(70vw, 26rem);
+  will-change: transform, opacity;
+}
+
+.scroll-burger__title {
+  position: absolute;
+  bottom: 16%;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+@media (max-width: 720px) {
+  .scroll-burger {
+    height: 220vh;
+  }
+  .scroll-burger__image {
+    width: min(80vw, 18rem);
+    height: min(80vw, 18rem);
+  }
+}
