@@ -1,0 +1,65 @@
+.cat-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.cat-filter__arrow {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--red);
+  color: var(--cream);
+  font-size: 1.1rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cat-filter__arrow:hover {
+  background: var(--ember);
+  transform: scale(1.06);
+}
+
+.cat-filter__track {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0.4rem 0.2rem;
+  scrollbar-width: none;
+}
+
+.cat-filter__track::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-filter__pill {
+  flex: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--steel);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--fog);
+  white-space: nowrap;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.cat-filter__pill:hover {
+  border-color: var(--ember);
+  color: var(--cream);
+}
+
+.cat-filter__pill--active {
+  background: linear-gradient(135deg, var(--ember), var(--red) 70%);
+  border-color: transparent;
+  color: var(--cream);
+}

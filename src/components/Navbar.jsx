@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { LuFlame, LuUtensils, LuMapPin, LuMenu, LuX } from 'react-icons/lu';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { LuUtensils, LuMapPin, LuMenu, LuX } from 'react-icons/lu';
+import logo from '../assets/logo.png';
 import './Navbar.css';
-import logoImg from '../assets/logo.png';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [locationOpen, setLocationOpen] = useState(false);
+  const locationRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -14,10 +17,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const links = [
-    { label: 'Menu', href: '#menu', icon: <LuUtensils /> },
-    { label: 'Location', href: '#location', icon: <LuMapPin /> },
-  ];
+  useEffect(() => {
+    const onClick = (e) => {
+      if (locationRef.current && !locationRef.current.contains(e.target)) {
+        setLocationOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onClick);
+    return () => document.removeEventListener('mousedown', onClick);
+  }, []);
 
   return (
     <motion.header
@@ -27,22 +35,45 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className="navbar__inner">
-        <a className="navbar__logo" href="#top" aria-label="The Addict, home">
-          <span className="navbar__logo-mark">
-            <LuFlame />
-          </span>
+        <Link className="navbar__logo" to="/" aria-label="The Addict, home">
+          <img src={logo} alt="The Addict" className="navbar__logo-img" />
           <span className="navbar__logo-text">
             THE <span>ADDICT</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="navbar__links navbar__links--desktop" aria-label="Primary">
-          {links.map((link) => (
-            <a key={link.label} href={link.href} className="navbar__link">
-              {link.icon}
-              {link.label}
-            </a>
-          ))}
+          <Link to="/menu" className="navbar__link">
+            <LuUtensils />
+            Menu
+          </Link>
+
+          <div className="navbar__location" ref={locationRef}>
+            <button
+              type="button"
+              className="navbar__link navbar__link--btn"
+              onClick={() => setLocationOpen((v) => !v)}
+              aria-expanded={locationOpen}
+            >
+              <LuMapPin />
+              Location
+            </button>
+
+            <AnimatePresence>
+              {locationOpen && (
+                <motion.div
+                  className="navbar__location-pop"
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <LuMapPin className="navbar__location-icon" />
+                  <span>Nabatieh, Lebanon</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         <button
@@ -63,12 +94,27 @@ export default function Navbar() {
           exit={{ height: 0, opacity: 0 }}
           aria-label="Primary mobile"
         >
-          {links.map((link) => (
-            <a key={link.label} href={link.href} className="navbar__link" onClick={() => setOpen(false)}>
-              {link.icon}
-              {link.label}
-            </a>
-          ))}
+          <Link to="/menu" className="navbar__link" onClick={() => setOpen(false)}>
+            <LuUtensils />
+            Menu
+          </Link>
+
+          <button
+            type="button"
+            className="navbar__link navbar__link--btn"
+            onClick={() => setLocationOpen((v) => !v)}
+            aria-expanded={locationOpen}
+          >
+            <LuMapPin />
+            Location
+          </button>
+
+          {locationOpen && (
+            <div className="navbar__location-pop navbar__location-pop--inline">
+              <LuMapPin className="navbar__location-icon" />
+              <span>Nabatieh, Lebanon</span>
+            </div>
+          )}
         </motion.nav>
       )}
     </motion.header>
