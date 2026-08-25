@@ -4,6 +4,7 @@ import PhotoSlot from './PhotoSlot';
 import './Hero.css';
 import wingImg from '../assets/wing.png';
 import burgerImg from '../assets/burger.png';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
@@ -80,11 +81,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
-          <a href="#menu" className="btn btn--primary">
+          <Link to="/menu" className="btn btn--primary">
             <LuUtensils />
             Explore Our Menu
             <LuArrowRight className="btn__arrow" />
-          </a>
+          </Link>
         </motion.div>
       </div>
 
